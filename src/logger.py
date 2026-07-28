@@ -2,13 +2,20 @@ import logging
 import os
 from datetime import datetime
 
-LOGFILE = f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log"
+LOG_FILE = f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log"
 
-logs_file_path = os.path.join(os.getcwd(),"logs",LOGFILE)
+logs_dir = os.path.join(os.getcwd(), "logs")
+os.makedirs(logs_dir, exist_ok=True)
 
-os.makedirs(logs_file_path, exist_ok=True)
+LOG_FILE_PATH = os.path.join(logs_dir, LOG_FILE)
 
 logging.basicConfig(
-    filename=logs_file_path,
-    format="[ %(asctime)s ] %(lineno)d %(name)s - %(levelname)s - %(message)",
-    level=logging.INFO,)
+    filename=LOG_FILE_PATH,
+    format="[ %(asctime)s ] %(lineno)d %(name)s - %(levelname)s - %(message)s",
+    level=logging.INFO,
+)
+
+logger = logging.getLogger(__name__)
+
+if __name__ == "__main__":
+    logger.info("Logging has started")
