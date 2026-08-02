@@ -5,4 +5,8 @@ seaborn
 matplotlib
 catboost
 xgboost
+fastapi
+uvicorn
+jinja2
+python-multipart
 -e .
